@@ -139,13 +139,6 @@ export default class Main extends React.Component {
     });
   };
   render() {
-    console.log(
-      this.state.personal,
-      this.state.education,
-      this.state.experience,
-      this.state.skills,
-      this.state.languages
-    );
     const { flip } = this.props;
     let builder;
     let preview;

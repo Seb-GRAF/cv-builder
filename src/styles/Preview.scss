@@ -4,6 +4,7 @@
   position: absolute;
   top: 7rem;
   display: flex;
+  flex-direction: column;
   font-size: 0.8rem;
   width: 35rem;
   height: 45rem;
@@ -146,6 +147,15 @@
       }
     }
   }
+  .spacer {
+    position: relative;
+    height: 5rem;
+    margin: 0 0 -5rem 0;
+  }
+}
+.preview-main {
+  display: flex;
+  height: 100%;
 }
 .preview.inactive {
   transform: rotateY(180deg);
