@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { motion, Variants } from "framer-motion";
 
 export default function Education({
   handleAdd,
@@ -8,6 +9,26 @@ export default function Education({
   handleChange,
   education,
 }) {
+  const cardVariants: Variants = {
+    offscreen: {
+      opacity: 0,
+      y: -80,
+    },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        duration: 0.8,
+      },
+    },
+    hidden: {
+      y: -300,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  };
   return (
     <ul className="education-list list">
       <div className="title">
@@ -24,7 +45,15 @@ export default function Education({
       {education.map((e) => {
         const id = e.id;
         return (
-          <li className="education-form form" key={id}>
+          <motion.li
+            className="education-form form"
+            key={id}
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={cardVariants}
+            exit="offscreen"
+            viewport={{ once: true, amount: 1 }}
+          >
             <div className="field">
               <label>
                 Degree name
@@ -74,7 +103,7 @@ export default function Education({
             <button className="delete" onClick={() => handleDelete(id)}>
               Delete
             </button>
-          </li>
+          </motion.li>
         );
       })}
     </ul>

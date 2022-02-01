@@ -1,4 +1,3 @@
-import React from "react";
 import uniqid from "uniqid";
 import "../styles/Main.scss";
 import PersonalInfo from "./forms/Personal-info";
@@ -14,10 +13,11 @@ import {
   defaultSkills,
   defaultLanguages,
 } from "../components/Default-objects";
+import React from "react";
 
 export default class Main extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       personal: defaultPersonalInfo,
       education: defaultEducation,
@@ -138,6 +138,7 @@ export default class Main extends React.Component {
       languages: filteredLanguages,
     });
   };
+
   render() {
     const { flip } = this.props;
     let builder;
@@ -150,6 +151,7 @@ export default class Main extends React.Component {
       builder = "main-builder inactive";
       preview = "preview";
     }
+
     return (
       <div className="main">
         <div className={builder}>

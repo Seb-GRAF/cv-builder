@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { motion, Variants } from "framer-motion";
 
 export default function Languages({
   handleAdd,
@@ -8,6 +9,20 @@ export default function Languages({
   handleChange,
   languages,
 }) {
+  const cardVariants: Variants = {
+    offscreen: {
+      opacity: 0,
+      y: -100,
+    },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        duration: 0.8,
+      },
+    },
+  };
   return (
     <ul className="languages-list list">
       <div className="title">
@@ -24,7 +39,14 @@ export default function Languages({
       {languages.map((e) => {
         const id = e.id;
         return (
-          <li className="languages-form form" key={id}>
+          <motion.li
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={cardVariants}
+            viewport={{ once: true }}
+            className="languages-form form"
+            key={id}
+          >
             <div className="field">
               <label>
                 <input
@@ -44,7 +66,7 @@ export default function Languages({
             {/* <button className="delete" onClick={() => handleDelete(id)}>
               Delete
             </button> */}
-          </li>
+          </motion.li>
         );
       })}
     </ul>

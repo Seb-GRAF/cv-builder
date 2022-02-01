@@ -1,4 +1,3 @@
-import React from "react";
 import PreviewPersonal from "./preview-personal";
 import PreviewEducation from "./preview-education";
 import PreviewExperience from "./preview-experience";

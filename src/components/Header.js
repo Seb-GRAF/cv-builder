@@ -7,9 +7,11 @@ export default function Header({ handleFlip }) {
       <div className="logo">
         <h1>CV Builder</h1>
       </div>
-      <button className="render" onClick={handleFlip}>
-        Render CV
-      </button>
+      <div className="header-buttons">
+        <button className="flip" onClick={handleFlip}>
+          Flip
+        </button>
+      </div>
     </header>
   );
 }

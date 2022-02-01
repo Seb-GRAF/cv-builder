@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { motion, Variants } from "framer-motion";
 
 export default function Skills({
   handleAdd,
@@ -8,6 +9,21 @@ export default function Skills({
   handleChange,
   skills,
 }) {
+  const cardVariants: Variants = {
+    offscreen: {
+      opacity: 0,
+      y: -100,
+    },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      delay: 1,
+      transition: {
+        type: "spring",
+        duration: 0.8,
+      },
+    },
+  };
   return (
     <ul className="skills-list list">
       <div className="title">
@@ -24,7 +40,14 @@ export default function Skills({
       {skills.map((e) => {
         const id = e.id;
         return (
-          <li className="skills-form form" key={id}>
+          <motion.li
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={cardVariants}
+            viewport={{ once: true }}
+            className="skills-form form"
+            key={id}
+          >
             <div className="field">
               <label>
                 <input
@@ -44,7 +67,7 @@ export default function Skills({
             {/* <button className="delete" onClick={() => handleDelete(id)}>
               Delete
             </button> */}
-          </li>
+          </motion.li>
         );
       })}
     </ul>

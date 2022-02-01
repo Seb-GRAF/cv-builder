@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { motion, Variants } from "framer-motion";
 
 export default function Experience({
   handleAdd,
@@ -8,6 +9,20 @@ export default function Experience({
   handleChange,
   experience,
 }) {
+  const cardVariants: Variants = {
+    offscreen: {
+      opacity: 0,
+      y: -100,
+    },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        duration: 0.8,
+      },
+    },
+  };
   return (
     <ul className="experience-list list">
       <div className="title">
@@ -24,7 +39,14 @@ export default function Experience({
       {experience.map((e) => {
         const id = e.id;
         return (
-          <li className="experience-form form" key={id}>
+          <motion.li
+            className="experience-form form"
+            initial="offscreen"
+            whileInView="onscreen"
+            variants={cardVariants}
+            viewport={{ once: true, amount: 1 }}
+            key={id}
+          >
             <div className="field">
               <label>
                 Position title
@@ -86,7 +108,7 @@ export default function Experience({
             <button className="delete" onClick={() => handleDelete(id)}>
               Delete
             </button>
-          </li>
+          </motion.li>
         );
       })}
     </ul>
