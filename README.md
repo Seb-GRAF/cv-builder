@@ -1,6 +1,6 @@
-# Battleship
+# CV Builder
 
-This apps allows you to fill in a form and export a fully rendered CV
+This apps allows you to fill in a form and export a formated CV example
 
 [LIVE](morepog.github.io/cv-builder)
 
