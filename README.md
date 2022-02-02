@@ -5,7 +5,7 @@
 
 This apps allows you to fill in a form and export a formated CV example
 
-[LIVE](https://morepog.github.io/cv-builder)
+[LIVE](https://Seb-GRAF.github.io/cv-builder)
 
 # Project
 
