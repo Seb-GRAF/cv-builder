@@ -5,14 +5,14 @@ import PreviewSkills from "./preview-skills";
 import PreviewLanguages from "./preview-languages";
 import "../../styles/Preview.scss";
 
-export default function Preview({
+const Preview = ({
   className,
   personal,
   education,
   experience,
   skills,
   languages,
-}) {
+}) => {
   return (
     <div className={className}>
       <div className="preview-main">
@@ -38,4 +38,6 @@ export default function Preview({
       <div className="spacer"></div>
     </div>
   );
-}
+};
+
+export default Preview;

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PersonalInfo({ handleChange }) {
+const PersonalInfo = ({ handleChange }) => {
   return (
     <div className="personal-info form">
       <h2 className="title">Personal Information</h2>
@@ -120,4 +120,5 @@ export default function PersonalInfo({ handleChange }) {
       </div>
     </div>
   );
-}
+};
+export default PersonalInfo;

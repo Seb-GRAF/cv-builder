@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion, Variants } from "framer-motion";
 
-export default function Experience({
-  handleAdd,
-  handleDelete,
-  handleChange,
-  experience,
-}) {
+const Experience = ({ handleAdd, handleDelete, handleChange, experience }) => {
   const cardVariants: Variants = {
     offscreen: {
       opacity: 0,
@@ -113,4 +108,6 @@ export default function Experience({
       })}
     </ul>
   );
-}
+};
+
+export default Experience;

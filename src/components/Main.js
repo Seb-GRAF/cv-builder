@@ -13,184 +13,162 @@ import {
   defaultSkills,
   defaultLanguages,
 } from "../components/Default-objects";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default class Main extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      personal: defaultPersonalInfo,
-      education: defaultEducation,
-      experience: defaultExperience,
-      skills: defaultSkills,
-      languages: defaultLanguages,
-      flip: false,
-    };
-  }
+const Main = () => {
+  const [personal, setPersonal] = useState(defaultPersonalInfo);
+  const [education, setEducation] = useState(defaultEducation);
+  const [experience, setExperience] = useState(defaultExperience);
+  const [skills, setSkills] = useState(defaultSkills);
+  const [languages, setLanguages] = useState(defaultLanguages);
+  const [flip, setFlip] = useState(false);
 
-  handleRender = () => {};
-  handleChangePersonal = (e) => {
+  const handleChangePersonal = (e) => {
     const { name, value } = e.target;
-    this.setState({
-      personal: {
-        ...this.state.personal,
-        [name]: value,
-      },
+    setPersonal({
+      ...personal,
+      [name]: value,
     });
   };
 
-  handleChangeEducation = (e, id) => {
+  const handleChangeEducation = (e, id) => {
     const { name, value } = e.target;
-    const newEducation = this.state.education.map((ed) => {
+    const newEducation = education.map((ed) => {
       if (ed.id === id) {
         return { ...ed, [name]: value };
       }
       return ed;
     });
-    this.setState({
-      education: newEducation,
-    });
+    setEducation(newEducation);
   };
-  handleAddEduction = () => {
+  const handleAddEduction = () => {
     const newEducation = { id: uniqid() };
-    this.setState({
-      education: [...this.state.education, newEducation],
-    });
+    setEducation([...education, newEducation]);
   };
-  handleDeleteEduction = (id) => {
-    let filteredEducation = this.state.education.filter((e) => e.id !== id);
-    this.setState({
-      education: filteredEducation,
-    });
+  const handleDeleteEduction = (id) => {
+    let filteredEducation = education.filter((e) => e.id !== id);
+    setEducation(filteredEducation);
   };
 
-  handleChangeExperience = (e, id) => {
+  const handleChangeExperience = (e, id) => {
     const { name, value } = e.target;
-    const newExperience = this.state.experience.map((exp) => {
+    const newExperience = experience.map((exp) => {
       if (exp.id === id) {
         return { ...exp, [name]: value };
       }
       return exp;
     });
-    this.setState({
-      experience: newExperience,
-    });
+    setExperience(newExperience);
   };
-  handleAddExperience = () => {
+  const handleAddExperience = () => {
     const newExperience = { id: uniqid() };
-    this.setState({
-      experience: [...this.state.experience, newExperience],
-    });
+    setExperience([...experience, newExperience]);
   };
-  handleDeleteExperience = (id) => {
-    let filteredExperience = this.state.experience.filter((e) => e.id !== id);
-    this.setState({
-      experience: filteredExperience,
-    });
+  const handleDeleteExperience = (id) => {
+    let filteredExperience = experience.filter((e) => e.id !== id);
+    setExperience(filteredExperience);
   };
 
-  handleChangeSkills = (e, id) => {
+  const handleChangeSkills = (e, id) => {
     const { name, value } = e.target;
-    const newSkills = this.state.skills.map((exp) => {
+    const newSkills = skills.map((exp) => {
       if (exp.id === id) {
         return { ...exp, [name]: value };
       }
       return exp;
     });
-    this.setState({
-      skills: newSkills,
-    });
+    setSkills(newSkills);
   };
-  handleAddSkills = () => {
+  const handleAddSkills = () => {
     const newSkills = { id: uniqid() };
-    this.setState({
-      skills: [...this.state.skills, newSkills],
-    });
+    setSkills([...skills, newSkills]);
   };
-  handleDeleteSkills = (id) => {
-    let filteredSkills = this.state.skills.filter((e) => e.id !== id);
-    this.setState({
-      skills: filteredSkills,
-    });
+  const handleDeleteSkills = (id) => {
+    let filteredSkills = skills.filter((e) => e.id !== id);
+    setSkills(filteredSkills);
   };
 
-  handleChangeLanguages = (e, id) => {
+  const handleChangeLanguages = (e, id) => {
     const { name, value } = e.target;
-    const newLanguages = this.state.languages.map((exp) => {
+    const newLanguages = languages.map((exp) => {
       if (exp.id === id) {
         return { ...exp, [name]: value };
       }
       return exp;
     });
-    this.setState({
-      languages: newLanguages,
-    });
+    setLanguages(newLanguages);
   };
-  handleAddLanguages = () => {
+  const handleAddLanguages = () => {
     const newLanguages = { id: uniqid() };
-    this.setState({
-      languages: [...this.state.languages, newLanguages],
-    });
+    setLanguages([...languages, newLanguages]);
   };
-  handleDeleteLanguages = (id) => {
-    let filteredLanguages = this.state.languages.filter((e) => e.id !== id);
-    this.setState({
-      languages: filteredLanguages,
-    });
+  const handleDeleteLanguages = (id) => {
+    let filteredLanguages = languages.filter((e) => e.id !== id);
+    setLanguages(filteredLanguages);
   };
 
-  render() {
-    const { flip } = this.props;
-    let builder;
-    let preview;
-    if (!flip) {
-      builder = "main-builder";
-      preview = "preview inactive";
-    }
-    if (flip) {
-      builder = "main-builder inactive";
-      preview = "preview";
-    }
+  useEffect(() => {
+    const handleFlip = () => {
+      setFlip(!flip);
+    };
+    document.querySelector(".flip").addEventListener("click", handleFlip);
 
-    return (
-      <div className="main">
-        <div className={builder}>
-          <PersonalInfo handleChange={this.handleChangePersonal} />
-          <Education
-            handleAdd={this.handleAddEduction}
-            handleDelete={this.handleDeleteEduction}
-            handleChange={this.handleChangeEducation}
-            education={this.state.education}
-          />
-          <Experience
-            handleAdd={this.handleAddExperience}
-            handleDelete={this.handleDeleteExperience}
-            handleChange={this.handleChangeExperience}
-            experience={this.state.experience}
-          />
-          <Skills
-            handleAdd={this.handleAddSkills}
-            handleDelete={this.handleDeleteSkills}
-            handleChange={this.handleChangeSkills}
-            skills={this.state.skills}
-          />
-          <Languages
-            handleAdd={this.handleAddLanguages}
-            handleDelete={this.handleDeleteLanguages}
-            handleChange={this.handleChangeLanguages}
-            languages={this.state.languages}
-          />
-          <div className="spacer"></div>
-        </div>
-        <Preview
-          className={preview}
-          personal={this.state.personal}
-          education={this.state.education}
-          experience={this.state.experience}
-          skills={this.state.skills}
-          languages={this.state.languages}
-        />
-      </div>
-    );
+    return () => {
+      document.querySelector(".flip").removeEventListener("click", handleFlip);
+    };
+  }, [flip]);
+
+  let builder;
+  let preview;
+  if (!flip) {
+    builder = "main-builder";
+    preview = "preview inactive";
   }
-}
+  if (flip) {
+    builder = "main-builder inactive";
+    preview = "preview";
+  }
+
+  return (
+    <div className="main">
+      <div className={builder}>
+        <PersonalInfo handleChange={handleChangePersonal} />
+        <Education
+          handleAdd={handleAddEduction}
+          handleDelete={handleDeleteEduction}
+          handleChange={handleChangeEducation}
+          education={education}
+        />
+        <Experience
+          handleAdd={handleAddExperience}
+          handleDelete={handleDeleteExperience}
+          handleChange={handleChangeExperience}
+          experience={experience}
+        />
+        <Skills
+          handleAdd={handleAddSkills}
+          handleDelete={handleDeleteSkills}
+          handleChange={handleChangeSkills}
+          skills={skills}
+        />
+        <Languages
+          handleAdd={handleAddLanguages}
+          handleDelete={handleDeleteLanguages}
+          handleChange={handleChangeLanguages}
+          languages={languages}
+        />
+        <div className="spacer"></div>
+      </div>
+      <Preview
+        className={preview}
+        personal={personal}
+        education={education}
+        experience={experience}
+        skills={skills}
+        languages={languages}
+      />
+    </div>
+  );
+};
+
+export default Main;

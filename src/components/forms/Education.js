@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion, Variants } from "framer-motion";
 
-export default function Education({
-  handleAdd,
-  handleDelete,
-  handleChange,
-  education,
-}) {
+const Education = ({ handleAdd, handleDelete, handleChange, education }) => {
   const cardVariants: Variants = {
     offscreen: {
       opacity: 0,
@@ -38,9 +33,6 @@ export default function Education({
           onClick={handleAdd}
           icon={faPlusCircle}
         />
-        {/* <button className="add" onClick={handleAdd}>
-          Add
-        </button> */}
       </div>
       {education.map((e) => {
         const id = e.id;
@@ -108,4 +100,6 @@ export default function Education({
       })}
     </ul>
   );
-}
+};
+
+export default Education;

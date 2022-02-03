@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion, Variants } from "framer-motion";
 
-export default function Skills({
-  handleAdd,
-  handleDelete,
-  handleChange,
-  skills,
-}) {
+const Skills = ({ handleAdd, handleDelete, handleChange, skills }) => {
   const cardVariants: Variants = {
     offscreen: {
       opacity: 0,
@@ -72,4 +67,6 @@ export default function Skills({
       })}
     </ul>
   );
-}
+};
+
+export default Skills;

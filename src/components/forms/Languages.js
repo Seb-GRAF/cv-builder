@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion, Variants } from "framer-motion";
 
-export default function Languages({
-  handleAdd,
-  handleDelete,
-  handleChange,
-  languages,
-}) {
+const Languages = ({ handleAdd, handleDelete, handleChange, languages }) => {
   const cardVariants: Variants = {
     offscreen: {
       opacity: 0,
@@ -71,4 +66,6 @@ export default function Languages({
       })}
     </ul>
   );
-}
+};
+
+export default Languages;
